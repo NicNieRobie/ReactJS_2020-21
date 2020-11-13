@@ -1,0 +1,37 @@
+@import "../colors","../mixins";
+
+body {
+  @include theme-aware('background-color', 'color-background');
+  @include theme-aware('color', 'color-card');
+  background-color: whitesmoke;
+
+.root {
+  @include theme-aware('background-color', 'color-background');
+  @include theme-aware('color', 'color-card');
+}
+
+  .content {
+    @include theme-aware('background-color', 'color-background');
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+
+    #tasks-list-header {
+      text-align: center;
+    }
+
+    .main {
+      flex: 1;
+    }
+  }
+}
+
+.header {
+  width: 100%;
+  @include theme-aware('background-color', 'color-headerBackground');
+  @include theme-aware('background-image', 'image-headerBackground');
+  color: white;
+  padding: 10px;
+  text-align: center;
+}

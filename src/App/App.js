@@ -1,67 +1,88 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
+import '../TaskList/taskList.scss';
 import TaskAdd from "../TaskAdd/TaskAdd";
 import TaskList from "../TaskList/TaskList";
+import Footer from "../Footer/Footer";
+import { connect } from 'react-redux';
+import { addTask, completeTask, setVisibilityFilter, VisibilityFilters } from '../actions';
 
 class App extends React.Component {
-    constructor() {
-        super();
-
-        this.state = {
-            tasks: []
-        };
-
-        this.addItem = this.addItem.bind(this);
-        this.deleteItem = this.deleteItem.bind(this);
-        this.changeCompletion = this.changeCompletion.bind(this);
+    state = {
+        theme: 'purple'
     }
 
-    addItem = (e, nameValue, descValue) => {
-        if (nameValue.value !== "" && descValue.value !== "") {
-            let newTask = {
-                key: Date.now(),
-                id: this.state.tasks.length + 1,
-                name: nameValue.value,
-                desc: descValue.value,
-                completed: false
-            };
-
-            this.setState((prevState) => {
-                return {
-                    tasks: prevState.tasks.concat(newTask)
-                };
-            });
-        }
-
-        if (e !== undefined) {
-            e.preventDefault();
+    changeTheme() {
+        if (this.state.theme === 'purple') {
+            this.setState(() => ({
+                theme: 'blue'
+            }));
+        } else {
+            this.setState(() => ({
+                theme: 'purple'
+            }));
         }
     }
-
-    deleteItem = (index) => {
-        const newTasks = [...this.state.tasks];
-        newTasks.splice(index, 1);
-        this.setState({tasks: newTasks});
-    }
-
-    changeCompletion = (index) => {
-        const newTasks = [...this.state.tasks];
-        newTasks[index].completed = !newTasks[index].completed;
-        this.setState({newTasks});
-    }
-
 
     render() {
+        const { dispatch, visibleTasks, visibilityFilter} = this.props;
         return (
-            <div className="main">
-                <TaskAdd addItem = {this.addItem.bind(this)}/>
-                <div id = "tasks-list-header"><h2>Tasks</h2></div>
-                <hr/>
-                <TaskList tasks = {this.state.tasks} changeCompletion = {this.changeCompletion.bind(this)} deleteItem = {this.deleteItem.bind(this)}/>
+            <div className={`content ${this.state.theme === 'purple' ? 'theme-purple' : 'theme-blue'}`}>
+                <div className="header">
+                    <h1>Simple Task Manager</h1>
+                </div>
+                <div className="main">
+                    <TaskAdd onAddClick={(name, desc) =>
+                        dispatch(addTask(name, desc))
+                    }/>
+                    <div id = "tasks-list-header"><h2>Tasks</h2></div>
+                    <hr/>
+                    <div className='taskList'>
+                        <TaskList tasks = {visibleTasks} changeCompletion = {index => dispatch(completeTask(index))}/>
+                    </div>
+                </div>
+                <Footer
+                    filter={visibilityFilter}
+                    onFilterChange={nextFilter =>
+                        dispatch(setVisibilityFilter(nextFilter))
+                    }
+                    onThemeChange={() => this.changeTheme()}
+                />
             </div>
         )
     }
 }
 
+App.propTypes = {
+    visibleTasks: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        desc: PropTypes.string.isRequired,
+        completed: PropTypes.bool.isRequired
+    })),
+    visibilityFilter: PropTypes.oneOf([
+        'SHOW_ALL',
+        'SHOW_COMPLETED',
+        'SHOW_ACTIVE'
+    ]).isRequired
+};
 
-export default App;
+function selectTodos(tasks, filter) {
+    switch (filter) {
+        case VisibilityFilters.SHOW_ALL:
+            return tasks;
+        case VisibilityFilters.SHOW_COMPLETED:
+            return tasks.filter(task => task.completed);
+        case VisibilityFilters.SHOW_ACTIVE:
+            return tasks.filter(task => !task.completed);
+    }
+}
+
+function select(state) {
+    return {
+        visibleTasks: selectTodos(state.tasks, state.visibilityFilter),
+        visibilityFilter: state.visibilityFilter
+    };
+}
+
+export default connect(select)(App);

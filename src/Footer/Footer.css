@@ -1,0 +1,33 @@
+.footer {
+  font-weight: 500;
+  width: 100%;
+  padding-left: 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}
+.theme-purple .footer {
+  background-color: #6A5ACD;
+}
+.theme-blue .footer {
+  background-color: #100da2;
+}
+.footer a {
+  text-decoration: none;
+  color: #2189fd;
+}
+.footer .themeButton {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background-color: transparent;
+  border: 0;
+  color: white;
+  font-weight: 500;
+  font-size: 1em;
+  outline: none;
+  padding-right: 20px;
+}
+.footer .themeButton:hover {
+  color: #2189fd;
+}
+
+/*# sourceMappingURL=Footer.css.map */

@@ -1,0 +1,77 @@
+@import "../colors","../mixins";
+
+.container {
+  border: lightgray solid 1px;
+  border-radius: 20px;
+  width: 87%;
+  margin: auto;
+  padding-top: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  hr {
+    margin-left: 30px;
+    margin-right: 30px;
+    border: 1px solid silver;
+  }
+
+  .description {
+    margin: 0px 30px 10px 30px;
+    border-radius: 10px;
+  }
+}
+
+.completion-button {
+  margin-top: 20px;
+
+  button {
+    @include theme-aware('background-color', 'color-buttonColor');
+    position: relative;
+    width: 100%;
+    font-weight: 600;
+    padding: 10px;
+    color: white;
+    border: 0px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    outline: none;
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      z-index: 2000;
+    }
+  }
+}
+
+.task-header, .status {
+  margin-left: 30px;
+}
+
+.deletion-button button {
+  position: relative;
+  @include theme-aware('background-color', 'color-buttonColor');
+  width: 100%;
+  font-weight: 600;
+  padding: 10px;
+  color: white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 0px;
+  border-top: 1px dashed white;
+  outline: none;
+
+  &:hover {
+    border-top: 0;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    z-index: 2000;
+  }
+}
+
+.green {
+  color: forestgreen;
+  font-weight: 500;
+}
+
+.red {
+  color: crimson;
+}

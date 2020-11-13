@@ -1,20 +1,54 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   background-color: whitesmoke;
+}
+.theme-purple body {
+  background-color: #F5F5F5;
+}
+.theme-blue body {
+  background-color: #404040;
+}
+.theme-purple body .root {
+  background-color: #F5F5F5;
+}
+.theme-blue body .root {
+  background-color: #404040;
+}
+body .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+.theme-purple body .content {
+  background-color: #F5F5F5;
+}
+.theme-blue body .content {
+  background-color: #404040;
+}
+body .content #tasks-list-header {
+  text-align: center;
+}
+body .content .main {
+  flex: 1;
 }
 
 .header {
   width: 100%;
-  background-color: #4158D0;
-  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
   color: white;
   padding: 10px;
   text-align: center;
 }
-
-#tasks-list-header {
-  text-align: center;
+.theme-purple .header {
+  background-color: #4158D0;
 }
+.theme-blue .header {
+  background-color: #2189fd;
+}
+.theme-purple .header {
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+}
+.theme-blue .header {
+  background-image: linear-gradient(19deg, #2189fd 0%, #100da2 99%);
+}
+
+/*# sourceMappingURL=App.css.map */

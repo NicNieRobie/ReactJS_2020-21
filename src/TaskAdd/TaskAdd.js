@@ -1,22 +1,35 @@
-import React from 'react';
-import './TaskAdd.css'
+import React, { findDOMNode } from 'react';
+import PropTypes from 'prop-types';
+import './TaskAdd.scss'
 
 class TaskAdd extends React.Component {
+    constructor(props) {
+        super(props);
+        this.wrapperName = React.createRef();
+        this.wrapperDesc = React.createRef();
+    }
+
     render() {
         return (
             <div className="add">
-                <form>
-                    <input className = "nameInput" ref={(a) => this.nameValue = a}
-                           placeholder="Enter task name">
-                    </input><br/>
-                    <input className = "descInput" ref={(a) => this.descValue = a}
-                           placeholder="Enter task description">
-                    </input><br/>
-                    <button className="addButton" type="button" onClick={(e) => this.props.addItem(e, this.nameValue, this.descValue)}>Add task</button>
-                </form>
+                <input className = "nameInput" placeholder="Enter task name" ref ={this.wrapperName}>
+                </input><br/>
+                <input className = "descInput" placeholder="Enter task description" ref ={this.wrapperDesc}>
+                </input><br/>
+                <button className="addButton" type="button" onClick={(e) => this.handleClick(e)}>Add task</button>
             </div>
         );
     }
+
+    handleClick(e) {
+        const name = this.wrapperName.current.value.trim();
+        const desc = this.wrapperDesc.current.value.trim();
+        this.props.onAddClick(name, desc);
+    }
 }
+
+TaskAdd.propTypes = {
+    onAddClick: PropTypes.func.isRequired
+};
 
 export default TaskAdd;

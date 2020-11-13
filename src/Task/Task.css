@@ -1,66 +1,82 @@
-.task {
-    position: relative;
-    background-color: white;
-    border: lightgray solid 1px;
-    border-radius: 20px;
-    width: 87%;
-    margin: auto;
-    padding-top: 5px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.container {
+  border: lightgray solid 1px;
+  border-radius: 20px;
+  width: 87%;
+  margin: auto;
+  padding-top: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-
-.task hr {
-    margin-left: 30px;
-    margin-right: 30px;
-    border: 1px solid silver;
+.container hr {
+  margin-left: 30px;
+  margin-right: 30px;
+  border: 1px solid silver;
 }
-
-.task .description {
-    margin: 0px 30px 10px 30px;
-    border-radius: 10px;
-}
-
-.task-header, .status {
-    margin-left: 30px;
+.container .description {
+  margin: 0px 30px 10px 30px;
+  border-radius: 10px;
 }
 
 .completion-button {
-    margin-top: 20px;
+  margin-top: 20px;
 }
-
 .completion-button button {
-    position: relative;
-    width: 100%;
-    font-weight: 600;
-    padding: 10px;
-    background-color: slateblue;
-    color: white;
-    border: 0px;
-    outline: none;
+  position: relative;
+  width: 100%;
+  font-weight: 600;
+  padding: 10px;
+  color: white;
+  border: 0px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  outline: none;
+}
+.theme-purple .completion-button button {
+  background-color: #6A5ACD;
+}
+.theme-blue .completion-button button {
+  background-color: #100da2;
+}
+.completion-button button:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 2000;
 }
 
-.completion-button button:hover {
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    z-index: 2000;
+.task-header, .status {
+  margin-left: 30px;
 }
 
 .deletion-button button {
-    position: relative;
-    width: 100%;
-    font-weight: 600;
-    padding: 10px;
-    background-color: slateblue;
-    color: white;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    border: 0px;
-    border-top: 1px dashed white;
-    outline: none;
+  position: relative;
+  width: 100%;
+  font-weight: 600;
+  padding: 10px;
+  color: white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 0px;
+  border-top: 1px dashed white;
+  outline: none;
+}
+.theme-purple .deletion-button button {
+  background-color: #6A5ACD;
+}
+.theme-blue .deletion-button button {
+  background-color: #100da2;
+}
+.deletion-button button:hover {
+  border-top: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 2000;
 }
 
-.deletion-button button:hover {
-    border-top: 0;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    z-index: 2000;
+.green {
+  color: forestgreen;
+  font-weight: 500;
 }
+
+.red {
+  color: crimson;
+}
+
+/*# sourceMappingURL=Task.css.map */
