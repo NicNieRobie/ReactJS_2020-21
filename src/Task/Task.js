@@ -1,28 +1,26 @@
 import React from 'react';
-import './Task.css';
+import classNames from 'classnames/bind';
+import './Task.scss';
+import styles from './Task.scss';
+const cx = classNames.bind(styles);
 
 class Task extends React.Component {
 
     render() {
 
         return(
-            <div className="task">
-            <h2 className="task-header">{this.props.task.name}</h2>
+            <div className={cx('container')}>
+            <h2 className={cx('task-header')}>{this.props.task.name}</h2>
                 <hr/>
-            <div className="description">
+            <div className={cx('description')}>
                 <p>{this.props.task.desc}</p>
             </div>
-            <span className="status">Completed: {this.props.task.completed.toString()}</span>
-            <div className="completion-button">
+            <span className={cx('status', {green: this.props.task.completed, red: !this.props.task.completed})}>Completed: {this.props.task.completed.toString()}</span>
+            <div className={cx('completion-button')}>
                 <button onClick={() => {this.props.changeCompletion()}}>
                     Change completion status
                 </button>
             </div>
-                <div className="deletion-button">
-                    <button onClick={() => {this.props.deleteItem()}}>
-                        Delete item
-                    </button>
-                </div>
         </div>
         );
     }

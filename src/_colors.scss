@@ -1,0 +1,14 @@
+$themes: (
+        purple: (
+                color-background: #F5F5F5,
+                color-headerBackground: #4158D0,
+                image-headerBackground: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%),
+                color-buttonColor: #6A5ACD
+        ),
+        blue: (
+                color-background: #404040,
+                color-headerBackground: #2189fd,
+                image-headerBackground: linear-gradient(19deg, #2189fd 0%, #100da2 99%),
+                color-buttonColor: #100da2
+        )
+);
